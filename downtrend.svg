@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="360" viewBox="0 0 640 360" fill="none">
+  <rect width="640" height="360" rx="16" fill="#ffffff"/>
+  <defs>
+    <linearGradient id="g2" x1="0" x2="1">
+      <stop offset="0" stop-color="#0b72ff"/>
+      <stop offset="1" stop-color="#00a99d"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(40,40)">
+    <rect x="0" y="0" width="560" height="280" rx="10" fill="#fff8fb" stroke="#eaeff6"/>
+    <polyline points="20,40 120,120 200,100 300,180 420,160 520,240" fill="none" stroke="url(#g2)" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="520" cy="240" r="12" fill="#0b72ff"/>
+    <text x="20" y="28" fill="#1f2937" font-family="Inter,Segoe UI,Roboto,Arial" font-size="18">Downtrend (illustration)</text>
+  </g>
+</svg>

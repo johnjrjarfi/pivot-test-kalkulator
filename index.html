@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Pivot & Fibonacci Calculator | PT. Equityworld Futures</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="navbar">
+  <div class="nav-left">
+    <div class="logo">
+      <img src="asset/Logo EWF.jpg" alt="PT. Equityworld Futures Logo" class="logo-img">
+      <div class="logo-text">
+        <div class="logo-main">Equityworld Futures</div>
+        <div class="logo-sub">Member of Jakarta Future Exchange</div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="nav-center">
+    <a href="pivot.html" class="nav-link active">Pivot</a>
+    <a href="fibonanci.html" class="nav-link">Fibonacci</a>
+  </nav>
+
+  <div class="nav-right">
+    <div id="langSelect" class="lang-switch" role="tablist" aria-label="Language">
+      <button class="lang-btn" data-lang="id" aria-label="Bahasa Indonesia" title="Bahasa Indonesia">
+        <img src="asset/flag-id.svg" alt="ID" class="flag-icon" width="24" height="16"/>
+      </button>
+      <button class="lang-btn" data-lang="en" aria-label="English" title="English">
+        <img src="asset/flag-gb.svg" alt="EN" class="flag-icon" width="24" height="16"/>
+      </button>
+    </div>
+    <button id="themeToggle" class="theme-toggle" title="Toggle theme" aria-label="Toggle theme">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><g stroke="#0b72ff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></g></svg>
+      <span class="sr-only">Theme</span>
+    </button>
+  </div>
+</header>
+
+<main class="container">
+
+  <h1 class="section-title fade-up" data-i18n="section.pivot.title">Pivot Calculator</h1>
+
+  <section class="card fade-up" id="pivotCard" aria-labelledby="pivotTitle">
+    <div class="card-header">
+      <h2 data-i18n="card.pivot.title">Pivot Calculator</h2>
+      <div class="card-actions">
+        <button id="pivotHelp" class="help-btn" title="Lihat penjelasan" data-i18n="btn.help">?</button>
+        <button id="pivotExport" class="export-btn" title="Export hasil" data-i18n="btn.export">⬇</button>
+      </div>
+    </div>
+    <div class="pivot-form">
+      <label data-i18n="label.open">Open</label>
+      <input id="p-open" type="number" placeholder="Open" data-i18n="ph.open" data-i18n-attr="placeholder">
+
+      <label data-i18n="label.high">High</label>
+      <input id="p-high" type="number" placeholder="High" data-i18n="ph.high" data-i18n-attr="placeholder">
+
+      <label data-i18n="label.low">Low</label>
+      <input id="p-low" type="number" placeholder="Low" data-i18n="ph.low" data-i18n-attr="placeholder">
+
+      <label data-i18n="label.close">Close</label>
+      <input id="p-close" type="number" placeholder="Close" data-i18n="ph.close" data-i18n-attr="placeholder">
+
+      <button id="pivotCalc" class="primary-btn calc-btn" data-i18n="btn.calculate">Calculate</button>
+      <div id="marketData" class="market-data">
+        <div class="data-label" data-i18n="market.lastupdate">Last Update:</div>
+        <div class="data-value">-</div>
+      </div>
+    </div>
+
+    <div class="pivot-results">
+      <table class="pivot-table" aria-describedby="pivot-results">
+        <thead>
+          <tr><th></th><th data-i18n="table.classic">Classic</th><th data-i18n="table.woodie">Woodie</th><th data-i18n="table.camarilla">Camarilla</th></tr>
+        </thead>
+        <tbody id="pivotResultBody">
+          <tr><td>R4</td><td>0.00</td><td>0.00</td><td>0.00</td></tr>
+          <tr><td>R3</td><td>0.00</td><td>0.00</td><td>0.00</td></tr>
+          <tr><td>R2</td><td>0.00</td><td>0.00</td><td>0.00</td></tr>
+          <tr><td>R1</td><td>0.00</td><td>0.00</td><td>0.00</td></tr>
+          <tr><td>Pivot</td><td>0.00</td><td>0.00</td><td>0.00</td></tr>
+          <tr><td>S1</td><td>0.00</td><td>0.00</td><td>0.00</td></tr>
+          <tr><td>S2</td><td>0.00</td><td>0.00</td><td>0.00</td></tr>
+          <tr><td>S3</td><td>0.00</td><td>0.00</td><td>0.00</td></tr>
+          <tr><td>S4</td><td>0.00</td><td>0.00</td><td>0.00</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="history card slide-up">
+      <div class="history-top">
+      <div>
+        <select id="historySelect" class="select-inline">
+          <option>LGD Daily</option>
+          <option>BCO Daily</option>
+          <option>LSI Daily</option>
+          <option>HSI Daily</option>
+          <option>SNI Daily</option>
+          <option>USD/CHF</option>
+          <option>USD/JPY</option>
+          <option>GBP/USD</option>
+          <option>AUD/USD</option>
+        </select>
+      </div>
+      <div class="history-note" data-i18n="history.note">Pilih data untuk autofill dan kalkulasi otomatis</div>
+    </div>
+
+    <table class="history-table" id="historyTable" aria-label="Historical data">
+      <thead>
+        <tr><th>Date</th><th>Open</th><th>High</th><th>Low</th><th>Close</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>10 Dec 2025</td><td>4207.79</td><td>4238.65</td><td>4182.01</td><td>4226.17</td></tr>
+        <tr><td>09 Dec 2025</td><td>4189.59</td><td>4221.32</td><td>4169.99</td><td>4209.98</td></tr>
+        <tr><td>08 Dec 2025</td><td>4197.69</td><td>4218.92</td><td>4175.89</td><td>4190.58</td></tr>
+      </tbody>
+    </table>
+
+    <div class="history-buttons">
+      <button id="historySave" class="primary-btn" title="Save current calculation to history" data-i18n="btn.save_history">Simpan History</button>
+      <button id="historyClear" class="danger-btn" title="Clear all saved history" data-i18n="btn.clear_history">Hapus Semua</button>
+    </div>
+  </section>
+
+  <section class="currency card slide-up">
+    <div class="currency-row">
+      <select class="select-inline">
+        <option>RP</option><option>JPY</option><option>EUR</option><option>GBP</option>
+        <option>AUD</option><option>CHF</option><option>USD</option>
+      </select>
+      <input type="number" placeholder="Currency Value">
+      <span class="eq">=</span>
+      <select class="select-inline">
+        <option>RP</option><option>JPY</option><option>EUR</option><option>GBP</option>
+        <option>AUD</option><option>CHF</option><option>USD</option>
+      </select>
+      <input type="number" placeholder="Converted">
+    </div>
+  </section>
+
+  <section class="disclaimer" data-i18n="disclaimer.text">
+    Manajemen PT. Equityworld Futures menghimbau kepada seluruh masyarakat untuk lebih berhati-hati terhadap beberapa bentuk penipuan yang berkedok investasi mengatasnamakan PT. Equityworld Futures dengan menggunakan media elektronik ataupun sosial media. Untuk itu harus dipastikan bahwa transfer dana ke rekening tujuan (Segregated Account) guna melaksanakan transaksi Perdagangan Berjangka adalah atas nama PT Equityworld Futures, bukan atas nama individu.
+  </section>
+
+</main>
+
+<!-- Help Modal -->
+<div id="helpModal" class="modal">
+    <div class="modal-content">
+    <button class="modal-close" id="closeModal">×</button>
+    <h3 data-i18n="help.title.pivot">📚 Panduan Pivot Point</h3>
+    <div class="help-text">
+      <p data-i18n="help.classic"><strong>Classic:</strong> P = (H+L+C)/3 → Level support/resistance dasar</p>
+      <p data-i18n="help.woodie"><strong>Woodie:</strong> Pw = (H+L+2C)/4 → Lebih fokus pada harga close</p>
+      <p data-i18n="help.camarilla"><strong>Camarilla:</strong> Range-based → Untuk trading intraday</p>
+      <p data-i18n="help.tip">💡 Gunakan data kemarin untuk kalkulasi level hari ini!</p>
+    </div>
+  </div>
+</div>
+
+<!-- AI Chat Widget -->
+<div id="aiChat" class="ai-chat">
+    <div class="ai-header">
+    <span data-i18n="ai.greeting">AI Assistant</span>
+    <button id="aiToggle" class="ai-toggle" title="Minimize">−</button>
+  </div>
+  <div id="aiContent" class="ai-content">
+    <div class="ai-messages" id="aiMessages">
+      <div class="ai-message bot">
+        <div class="ai-avatar">🤖</div>
+        <div class="ai-text" data-i18n="ai.greeting">Halo! 👋 Ada yang bisa saya bantu dengan kalkulasi Pivot atau Fibonacci?</div>
+      </div>
+    </div>
+    <div class="ai-input-box">
+      <input type="text" id="aiInput" placeholder="Tanya sesuatu..." class="ai-input" data-i18n="ai.placeholder" data-i18n-attr="placeholder">
+      <button id="aiSend" class="ai-send" data-i18n="ai.send">Kirim</button>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-content">
+    <div class="footer-brand" data-i18n="footer.brand">PT. Equityworld Futures</div>
+    <a href="https://www.equityworld-futures.com/index.php/id/" target="_blank" rel="noopener noreferrer" class="footer-link">Mengenai Perusahaan</a>
+  </div>
+</footer>
+
+<script src="i18n.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Fibonacci Calculator | PT. Equityworld Futures</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="navbar">
+  <div class="nav-left">
+    <div class="logo">
+      <img src="asset/Logo EWF.jpg" alt="PT. Equityworld Futures Logo" class="logo-img">
+      <div class="logo-text">
+        <div class="logo-main">Equityworld Futures</div>
+        <div class="logo-sub">Member of Jakarta Future Exchange</div>
+      </div>
+    </div>
+  </div>
+
+  <nav class="nav-center">
+    <a href="pivot.html" class="nav-link">Pivot</a>
+    <a href="fibonanci.html" class="nav-link active">Fibonacci</a>
+  </nav>
+
+  <div class="nav-right">
+    <div id="langSelect" class="lang-switch" role="tablist" aria-label="Language">
+      <button class="lang-btn" data-lang="id" aria-label="Bahasa Indonesia" title="Bahasa Indonesia">
+        <img src="asset/flag-id.svg" alt="ID" class="flag-icon" width="24" height="16"/>
+      </button>
+      <button class="lang-btn" data-lang="en" aria-label="English" title="English">
+        <img src="asset/flag-gb.svg" alt="EN" class="flag-icon" width="24" height="16"/>
+      </button>
+    </div>
+    <button id="themeToggle" class="theme-toggle" title="Toggle theme" aria-label="Toggle theme">
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><g stroke="#0b72ff" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/></g></svg>
+      <span class="sr-only">Theme</span>
+    </button>
+  </div>
+</header>
+
+<main class="container">
+
+  <h1 class="section-title fade-up" data-i18n="fibo.title">
+    Fibonacci Retracement & Projection
+    <button id="fiboHelp" class="help-btn-inline" title="Lihat penjelasan" data-i18n="btn.help">?</button>
+  </h1>
+
+  <!-- UP TREND BLOCK -->
+  <section class="fib-block card slide-left" aria-labelledby="uptrend">
+    <div class="fib-left">
+      <img src="asset/uptrend.svg" alt="Uptrend" class="trend-img">
+    </div>
+
+    <div class="fib-middle">
+      <label data-i18n="label.open">Price (A)</label>
+      <input id="fu-a" type="number" placeholder="low value" data-i18n-attr="placeholder">
+      <label data-i18n="label.high">Price (B)</label>
+      <input id="fu-b" type="number" placeholder="high value" data-i18n-attr="placeholder">
+      <button id="fiboUpCalc" class="primary-btn calc-btn" data-i18n="btn.calculate">Calculate</button>
+    </div>
+
+    <div class="fib-right">
+      <div class="fib-table">
+        <h4 data-i18n="fibo.retrace">Retracement</h4>
+        <table><thead><tr><th>Level</th><th>Value</th></tr></thead>
+          <tbody id="fu-ret">
+            <tr><td>23.60%</td><td style="text-align:right">0.00</td></tr>
+            <tr><td>38.20%</td><td style="text-align:right">0.00</td></tr>
+            <tr><td>50.00%</td><td style="text-align:right">0.00</td></tr>
+            <tr><td>61.80%</td><td style="text-align:right">0.00</td></tr>
+            <tr><td>78.60%</td><td style="text-align:right">0.00</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="fib-table">
+        <h4 data-i18n="fibo.proj">Projection</h4>
+        <table><thead><tr><th>Level</th><th>Value</th></tr></thead>
+          <tbody id="fu-proj">
+            <tr><td>138.20%</td><td style="text-align:right">0.00</td></tr>
+            <tr><td>150.00%</td><td style="text-align:right">0.00</td></tr>
+            <tr><td>161.80%</td><td style="text-align:right">0.00</td></tr>
+            <tr><td>200.00%</td><td style="text-align:right">0.00</td></tr>
+            <tr><td>238.20%</td><td style="text-align:right">0.00</td></tr>
+            <tr><td>261.80%</td><td style="text-align:right">0.00</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- DOWN TREND BLOCK -->
+  <section class="fib-block card slide-right" aria-labelledby="downtrend">
+    <div class="fib-left">
+      <img src="asset/downtrend.svg" alt="Downtrend" class="trend-img">
+    </div>
+
+    <div class="fib-middle">
+      <label data-i18n="label.open">Price (A)</label>
+      <input id="fd-a" type="number" placeholder="high value" data-i18n-attr="placeholder">
+      <label data-i18n="label.high">Price (B)</label>
+      <input id="fd-b" type="number" placeholder="low value" data-i18n-attr="placeholder">
+      <button id="fiboDownCalc" class="primary-btn calc-btn" data-i18n="btn.calculate">Calculate</button>
+    </div>
+
+    <div class="fib-right">
+      <div class="fib-table">
+        <h4>Retracement</h4>
+        <table><thead><tr><th>Level</th><th>Value</th></tr></thead>
+          <tbody id="fd-ret">
+            <tr><td>78.60%</td><td style="text-align:right">0.00</td></tr>
+            <tr><td>61.80%</td><td style="text-align:right">0.00</td></tr>
+            <tr><td>50.00%</td><td style="text-align:right">0.00</td></tr>
+            <tr><td>38.20%</td><td style="text-align:right">0.00</td></tr>
+            <tr><td>23.60%</td><td style="text-align:right">0.00</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="fib-table">
+        <h4>Projection</h4>
+        <table><thead><tr><th>Level</th><th>Value</th></tr></thead>
+          <tbody id="fd-proj">
+            <tr><td>138.20%</td><td style="text-align:right">0.00</td></tr>
+            <tr><td>150.00%</td><td style="text-align:right">0.00</td></tr>
+            <tr><td>161.80%</td><td style="text-align:right">0.00</td></tr>
+            <tr><td>200.00%</td><td style="text-align:right">0.00</td></tr>
+            <tr><td>238.20%</td><td style="text-align:right">0.00</td></tr>
+            <tr><td>261.80%</td><td style="text-align:right">0.00</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section class="history card slide-up">
+    <div class="history-top">
+      <div>
+        <select id="historySelect" class="select-inline">
+          <option>LGD Daily</option>
+          <option>BCO Daily</option>
+          <option>LSI Daily</option>
+          <option>HSI Daily</option>
+          <option>SNI Daily</option>
+          <option>USD/CHF</option>
+          <option>USD/JPY</option>
+          <option>GBP/USD</option>
+          <option>AUD/USD</option>
+        </select>
+      </div>
+      <div class="history-note" data-i18n="history.note">Pilih data untuk autofill dan kalkulasi otomatis</div>
+    </div>
+
+    <table class="history-table" id="historyTable" aria-label="Historical data">
+      <thead>
+        <tr><th>Date</th><th>Open</th><th>High</th><th>Low</th><th>Close</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>10 Dec 2025</td><td>4207.79</td><td>4238.65</td><td>4182.01</td><td>4226.17</td></tr>
+        <tr><td>09 Dec 2025</td><td>4189.59</td><td>4221.32</td><td>4169.99</td><td>4209.98</td></tr>
+        <tr><td>08 Dec 2025</td><td>4197.69</td><td>4218.92</td><td>4175.89</td><td>4190.58</td></tr>
+      </tbody>
+    </table>
+
+    <div class="history-buttons">
+      <button id="historySave" class="primary-btn" title="Save current calculation to history" data-i18n="btn.save_history">Simpan History</button>
+      <button id="historyClear" class="danger-btn" title="Clear all saved history" data-i18n="btn.clear_history">Hapus Semua</button>
+    </div>
+  </section>
+
+  <section class="disclaimer">
+    Manajemen PT. Equityworld Futures menghimbau kepada seluruh masyarakat untuk lebih berhati-hati terhadap beberapa bentuk penipuan yang berkedok investasi mengatasnamakan PT. Equityworld Futures dengan menggunakan media elektronik ataupun sosial media. Untuk itu harus dipastikan bahwa transfer dana ke rekening tujuan (Segregated Account) guna melaksanakan transaksi Perdagangan Berjangka adalah atas nama PT Equityworld Futures, bukan atas nama individu.
+  </section>
+
+</main>
+
+<!-- Help Modal -->
+<div id="helpModal" class="modal">
+    <div class="modal-content">
+    <button class="modal-close" id="closeModal">×</button>
+    <h3 data-i18n="help.title.fibo">📚 Panduan Fibonacci</h3>
+    <div class="help-text">
+      <p data-i18n="help.retrace"><strong>Retracement:</strong> Level di mana harga mundur sebelum naik lagi</p>
+      <p data-i18n="help.proj"><strong>Projection:</strong> Level target harga lanjutan setelah breakout</p>
+      <p data-i18n="help.levels"><strong>Levels:</strong> 23.6%, 38.2%, 50%, 61.8%, 78.6% untuk retracement</p>
+      <p data-i18n="help.tip">💡 Uptrend: A=Low, B=High | Downtrend: A=High, B=Low</p>
+    </div>
+  </div>
+</div>
+
+<!-- AI Chat Widget -->
+<div id="aiChat" class="ai-chat">
+    <div class="ai-header">
+    <span data-i18n="ai.greeting">AI Assistant</span>
+    <button id="aiToggle" class="ai-toggle" title="Minimize">−</button>
+  </div>
+  <div id="aiContent" class="ai-content">
+    <div class="ai-messages" id="aiMessages">
+      <div class="ai-message bot">
+        <div class="ai-avatar">🤖</div>
+        <div class="ai-text" data-i18n="ai.greeting">Halo! 👋 Ada yang bisa saya bantu dengan kalkulasi Pivot atau Fibonacci?</div>
+      </div>
+    </div>
+    <div class="ai-input-box">
+      <input type="text" id="aiInput" placeholder="Tanya sesuatu..." class="ai-input" data-i18n="ai.placeholder" data-i18n-attr="placeholder">
+      <button id="aiSend" class="ai-send" data-i18n="ai.send">Kirim</button>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+  <div class="footer-content">
+    <div class="footer-brand" data-i18n="footer.brand">PT. Equityworld Futures</div>
+    <a href="https://www.equityworld-futures.com/index.php/id/" target="_blank" rel="noopener noreferrer" class="footer-link">Mengenai Perusahaan</a>
+  </div>
+</footer>
+
+<script src="i18n.js"></script>
+<script src="script.js"></script>
+</body>
+</html>

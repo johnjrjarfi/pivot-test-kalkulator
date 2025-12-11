@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="360" viewBox="0 0 640 360" fill="none">
+  <rect width="640" height="360" rx="16" fill="#ffffff"/>
+  <defs>
+    <linearGradient id="g1" x1="0" x2="1">
+      <stop offset="0" stop-color="#00a99d"/>
+      <stop offset="1" stop-color="#0b72ff"/>
+    </linearGradient>
+  </defs>
+  <g transform="translate(40,40)">
+    <rect x="0" y="0" width="560" height="280" rx="10" fill="#f6fbff" stroke="#e6eef6"/>
+    <polyline points="20,220 120,160 200,180 300,100 420,120 520,40" fill="none" stroke="url(#g1)" stroke-width="12" stroke-linecap="round" stroke-linejoin="round"/>
+    <circle cx="520" cy="40" r="12" fill="#0b72ff"/>
+    <text x="20" y="28" fill="#1f2937" font-family="Inter,Segoe UI,Roboto,Arial" font-size="18">Uptrend (illustration)</text>
+  </g>
+</svg>
